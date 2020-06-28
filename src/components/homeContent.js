@@ -1,6 +1,21 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Image from 'gatsby-image';
+import styled from '@emotion/styled';
+import { css } from '@emotion/core';
+
+const HomeText = styled.div`
+    padding-top: 4rem;
+    max-width: 1200px;
+    width: 95%;
+    margin: 0 auto;
+
+    @media (min-width: 768px) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+    }
+`;
 
 const HomeContent = () => {
     const info = useStaticQuery(graphql`
@@ -23,12 +38,18 @@ const HomeContent = () => {
 
     return (
         <>
-            <h2>{title}</h2>
+            <h2
+                css={css`
+                    text-align: center;
+                    font-size: 4rem;
+                    margin-top: 4rem;
+                `}
+            >{title}</h2>
 
-            <div>
+            <HomeText>
                 <p>{content}</p>
                 <Image fluid={image.fluid} />
-            </div>
+            </HomeText>
         </>
     );
 }
